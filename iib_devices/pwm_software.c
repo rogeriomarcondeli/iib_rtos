@@ -21,7 +21,7 @@
 #include "board_drivers/hardware_def.h"
 #include "peripheral_drivers/gpio/gpio_driver.h"
 #include "iib_devices/leds.h"
-#include "iib_devices/PWMSoftware.h"
+#include "iib_devices/pwm_software.h"
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 

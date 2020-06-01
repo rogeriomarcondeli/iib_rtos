@@ -38,7 +38,7 @@
 #include "iib_devices/pt100.h"
 #include "iib_devices/task_iib.h"
 #include "iib_devices/iib_data.h"
-#include "iib_devices/PWMSoftware.h"
+#include "iib_devices/pwm_software.h"
 #include "system/system.h"
 
 /////////////////////////////////////////////////////////////////////////////////////////////
