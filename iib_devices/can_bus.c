@@ -15,7 +15,7 @@
 #include "utils/uartstdio.h"
 #include "iib_devices/can_bus.h"
 #include "iib_devices/iib_data.h"
-#include "iib_devices/BoardTempHum.h"
+#include "iib_devices/board_temp_hum.h"
 #include "iib_devices/input.h"
 #include "iib_devices/application.h"
 #include "iib_devices/adc_internal.h"

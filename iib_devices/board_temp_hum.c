@@ -12,7 +12,7 @@
 #include "driverlib/gpio.h"
 #include "driverlib/sysctl.h"
 #include "driverlib/pin_map.h"
-#include "iib_devices/BoardTempHum.h"
+#include "iib_devices/board_temp_hum.h"
 #include "system/system.h"
 #include "peripheral_drivers/gpio/gpio_driver.h"
 #include "peripheral_drivers/i2c/i2c_driver.h"

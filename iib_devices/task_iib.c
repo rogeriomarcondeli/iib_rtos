@@ -32,7 +32,7 @@
 #include "iib_devices/leds.h"
 #include "iib_devices/output.h"
 #include "iib_devices/input.h"
-#include "iib_devices/BoardTempHum.h"
+#include "iib_devices/board_temp_hum.h"
 #include "iib_devices/pt100.h"
 #include "iib_devices/ntc_isolated_i2c.h"
 #include "iib_devices/application.h"
