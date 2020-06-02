@@ -43,6 +43,25 @@
 								<option id="com.ti.ccstudio.buildDefinitions.TMS470_20.2.compilerID.LITTLE_ENDIAN.1654407058" name="Little endian code [See 'General' page to edit] (--little_endian, -me)" superClass="com.ti.ccstudio.buildDefinitions.TMS470_20.2.compilerID.LITTLE_ENDIAN" value="true" valueType="boolean"/>
 								<option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false" id="com.ti.ccstudio.buildDefinitions.TMS470_20.2.compilerID.INCLUDE_PATH.1244590939" name="Add dir to #include search path (--include_path, -I)" superClass="com.ti.ccstudio.buildDefinitions.TMS470_20.2.compilerID.INCLUDE_PATH" valueType="includePath">
 									<listOptionValue builtIn="false" value="${PROJECT_ROOT}"/>
+									<listOptionValue builtIn="false" value="${workspace_loc:/${ProjName}/os_tasks/sample_adc_task}"/>
+									<listOptionValue builtIn="false" value="${workspace_loc:/${ProjName}/os_tasks/run_toggle_task}"/>
+									<listOptionValue builtIn="false" value="${workspace_loc:/${ProjName}/os_tasks/power_on_check_task}"/>
+									<listOptionValue builtIn="false" value="${workspace_loc:/${ProjName}/os_tasks/alarms_app_check_task}"/>
+									<listOptionValue builtIn="false" value="${workspace_loc:/${ProjName}/os_tasks/error_check_handle_task}"/>
+									<listOptionValue builtIn="false" value="${workspace_loc:/${ProjName}/os_tasks/ntc_tasks}"/>
+									<listOptionValue builtIn="false" value="${workspace_loc:/${ProjName}/os_tasks/board_temperature_task}"/>
+									<listOptionValue builtIn="false" value="${workspace_loc:/${ProjName}/os_tasks/relative_humidity_task}"/>
+									<listOptionValue builtIn="false" value="${workspace_loc:/${ProjName}/os_tasks/leds_indications_status_task}"/>
+									<listOptionValue builtIn="false" value="${workspace_loc:/${ProjName}/os_tasks/pt100_tasks}"/>
+									<listOptionValue builtIn="false" value="${workspace_loc:/${ProjName}/os_tasks/send_data_schedule_task}"/>
+									<listOptionValue builtIn="false" value="${workspace_loc:/${ProjName}/os_tasks/interlocks_app_check_task}"/>
+									<listOptionValue builtIn="false" value="${workspace_loc:/${ProjName}/os_tasks/drives_current_tasks}"/>
+									<listOptionValue builtIn="false" value="${workspace_loc:/${ProjName}/os_tasks/drives_voltage_task}"/>
+									<listOptionValue builtIn="false" value="${workspace_loc:/${ProjName}/os_tasks/lv_currents_tasks}"/>
+									<listOptionValue builtIn="false" value="${workspace_loc:/${ProjName}/os_tasks/currents_tasks}"/>
+									<listOptionValue builtIn="false" value="${workspace_loc:/${ProjName}/os_tasks/application_task}"/>
+									<listOptionValue builtIn="false" value="${workspace_loc:/${ProjName}/os_tasks}"/>
+									<listOptionValue builtIn="false" value="${workspace_loc:/${ProjName}/os_tasks/voltages_tasks}"/>
 									<listOptionValue builtIn="false" value="${workspace_loc:/${ProjName}/iib_devices}"/>
 									<listOptionValue builtIn="false" value="${workspace_loc:/${ProjName}/system}"/>
 									<listOptionValue builtIn="false" value="${workspace_loc:/${ProjName}/peripheral_drivers}"/>

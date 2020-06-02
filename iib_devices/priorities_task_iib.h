@@ -22,8 +22,8 @@
 //
 //*****************************************************************************
 
-#ifndef __PRIORITIES_H__
-#define __PRIORITIES_H__
+#ifndef __PRIORITIES_TASK_IIB_H__
+#define __PRIORITIES_TASK_IIB_H__
 
 //*****************************************************************************
 //
@@ -31,7 +31,25 @@
 //
 //*****************************************************************************
 
-#define PRIORITY_So1Task       1
-#define PRIORITY_So2Task       1
+#define PRIORITY_APPLICATION_TASK               18
+#define PRIORITY_VOLTAGES_TASK                  17
+#define PRIORITY_CURRENTS_TASK                  17
+#define PRIORITY_LV_CURRENTS_TASK               17
+#define PRIORITY_DRIVES_VOLTAGE_TASK            15
+#define PRIORITY_DRIVES_CURRENT_TASK            15
+#define PRIORITY_INTERLOCKS_APP_CHECK_TASK      17
+#define PRIORITY_SEND_DATA_SCHEDULE_TASK        16
+#define PRIORITY_PT100_TASK                     14
+#define PRIORITY_LEDS_INDICATIONS_STATUS_TASK   13
+#define PRIORITY_RELATIVE_HUMIDITY_TASK         12
+#define PRIORITY_BOARD_TEMPERATURE_TASK         12
+#define PRIORITY_NTC_TASK                       10
+#define PRIORITY_ERROR_CHECK_HANDLE_TASK        14
+#define PRIORITY_ALARMS_APP_CHECK_TASK          10
+#define PRIORITY_POWER_ON_CHECK_TASK            18
+#define PRIORITY_RUN_TOGGLE_TASK                10
+#define PRIORITY_SAMPLE_ADC_TASK                18
+
+
 
 #endif // __PRIORITIES_H__

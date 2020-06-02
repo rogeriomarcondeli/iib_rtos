@@ -53,7 +53,7 @@
 #define configTICK_RATE_HZ                  ( ( portTickType ) 1000 )
 #define configMINIMAL_STACK_SIZE            ( ( unsigned short ) 200 )
 #define configTOTAL_HEAP_SIZE               ( ( size_t ) ( 65535 ) )
-#define configMAX_TASK_NAME_LEN             ( 15 )
+#define configMAX_TASK_NAME_LEN             ( 25 )
 #define configUSE_TRACE_FACILITY            1
 #define configUSE_16_BIT_TICKS              0
 #define configIDLE_SHOULD_YIELD             0
@@ -65,7 +65,7 @@
 #define configSUPPORT_DYNAMIC_ALLOCATION    1
 #define configUSE_TASK_NOTIFICATIONS        1
 
-#define configMAX_PRIORITIES                16
+#define configMAX_PRIORITIES                18
 #define configMAX_CO_ROUTINE_PRIORITIES     ( 2 )
 #define configQUEUE_REGISTRY_SIZE           10
 

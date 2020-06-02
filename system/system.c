@@ -96,15 +96,15 @@ void IntTimer1msHandler(void)
     }
     else can_timestamp_100ms++;
 
-    RunToggle();
-    sample_adc();
-    RunToggle();
-    task_1_ms();
+    //RunToggle();
+    //sample_adc();
+    //RunToggle();
+    //task_1_ms();
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 
-void IntTimer100usHandler(void)
+/*void IntTimer100usHandler(void)
 {
     // Clear the timer interrupt.
     TimerIntClear(TIMER0_BASE, TIMER_TIMA_TIMEOUT);
@@ -112,7 +112,7 @@ void IntTimer100usHandler(void)
     RunToggle();
     task_100_us();
     RunToggle();
-}
+}*/
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -137,7 +137,7 @@ void Timer_1ms_Init(void)
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 
-void Timer_100us_Init(void)
+/*void Timer_100us_Init(void)
 {
     // Enable timer 0.
     SysCtlPeripheralEnable(SYSCTL_PERIPH_TIMER0);
@@ -154,7 +154,7 @@ void Timer_100us_Init(void)
 
     // Enable the timer 0.
     TimerEnable(TIMER0_BASE, TIMER_A);
-}
+}*/
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -183,7 +183,7 @@ void init_system(void)
 
     Timer_1ms_Init();
 
-    Timer_100us_Init();
+    //Timer_100us_Init();
 
     PWM1SoftwareInit();
 

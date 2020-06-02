@@ -81,6 +81,10 @@ void BoardTemperatureStartConversion(void)
 
 void BoardTemperatureRead(void)
 {
+    BoardTemperatureStartConversion();
+
+    delay_ms(50);
+
     uint8_t Status=1;
     uint8_t TemperatureH;
     uint8_t TemperatureL;
@@ -156,6 +160,10 @@ void RelativeHumidityStartConversion(void)
 
 void RelativeHumidityRead(void)
 {
+    RelativeHumidityStartConversion();
+
+    delay_ms(50);
+
     unsigned char Status=1;
     unsigned char RelativeHumidityH;
     unsigned char RelativeHumidityL;

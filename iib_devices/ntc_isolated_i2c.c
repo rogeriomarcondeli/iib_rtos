@@ -415,6 +415,9 @@ void NtcStartConversion(void)
 //******************************************************************************
 void NtcRead(void)
 {
+    NtcStartConversion();
+
+    delay_ms(50);
 
     TempNtcIgbt1.Value = GetTemperature((((float)ADS1x1x_read(&ntc_igbt1)*6.144)/2047.0));
 
