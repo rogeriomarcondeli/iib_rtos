@@ -184,7 +184,7 @@ int main(void)
     //
     // Create the relative humidity task.
     //
-    if(RelativeHumidityTaskInit() != 0)
+    /*if(RelativeHumidityTaskInit() != 0)
     {
         while(1)
         {
@@ -192,7 +192,7 @@ int main(void)
             // Do Nothing.
             //
         }
-    }
+    }*/
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 

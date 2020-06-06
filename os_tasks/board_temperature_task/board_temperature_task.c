@@ -14,16 +14,32 @@
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 
-TaskHandle_t g_xBoardTemperatureHandle = NULL;
+xTaskHandle g_xBoardTemperatureHandle = NULL;
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 
 static void BoardTemperatureTask(void *pvParameters)
 {
+    portTickType xLastWakeTime;
+    xLastWakeTime = xTaskGetTickCount();
 
     while(1)
     {
-        BoardTemperatureRead();
+       BoardTemperatureStartConversion();
+
+       vTaskDelayUntil(&xLastWakeTime, 100 / portTICK_RATE_MS);
+
+       BoardTemperatureRead();
+
+       vTaskDelayUntil(&xLastWakeTime, 100 / portTICK_RATE_MS);
+
+       RelativeHumidityStartConversion();
+
+       vTaskDelayUntil(&xLastWakeTime, 100 / portTICK_RATE_MS);
+
+       RelativeHumidityRead();
+
+       vTaskDelayUntil(&xLastWakeTime, 100 / portTICK_RATE_MS);
     }
 
 }

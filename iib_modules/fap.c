@@ -420,7 +420,7 @@ void check_fap_indication_leds()
 
     //Interlock Externo
     if(fap.ExternalItlkSts)Led6TurnOff();
-    else Led6TurnOff();
+    else Led6TurnOn();
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 

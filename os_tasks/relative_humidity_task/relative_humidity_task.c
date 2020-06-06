@@ -14,16 +14,20 @@
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 
-TaskHandle_t g_xRelativeHumidityHandle = NULL;
+xTaskHandle g_xRelativeHumidityHandle = NULL;
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 
 static void RelativeHumidityTask(void *pvParameters)
 {
+    portTickType xLastWakeTime;
+    xLastWakeTime = xTaskGetTickCount();
 
     while(1)
     {
         RelativeHumidityRead();
+
+        vTaskDelayUntil(&xLastWakeTime, 40/ portTICK_RATE_MS);
     }
 
 }

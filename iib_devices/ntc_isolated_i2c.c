@@ -14,7 +14,6 @@
 #include <stdio.h>
 #include <math.h>
 #include "inc/hw_ssi.h"
-#include "inc/hw_i2c.h"
 #include "inc/hw_types.h"
 #include "inc/hw_gpio.h"
 #include "inc/hw_memmap.h"
@@ -23,7 +22,6 @@
 #include "driverlib/gpio.h"
 #include "driverlib/sysctl.h"
 #include "driverlib/ssi.h"
-#include "driverlib/i2c.h"
 #include "driverlib/pin_map.h"
 #include "driverlib/interrupt.h"
 #include "iib_devices/ntc_isolated_i2c.h"
@@ -114,25 +112,7 @@ ADS1x1x_config_t ntc_igbt2;
 /**************************************************************************/
 void ADS1x1x_write_register(uint8_t i2c_address, uint8_t reg, uint16_t value)
 {
-
-  I2CMasterSlaveAddrSet(I2C2_BASE, i2c_address, false);
-  I2CMasterDataPut(I2C2_BASE, reg);
-  I2CMasterControl(I2C2_BASE,I2C_MASTER_CMD_BURST_SEND_START);
-  while(!(I2CMasterBusy(I2C2_BASE)));
-  while(I2CMasterBusy(I2C2_BASE));
-
-  I2CMasterDataPut(I2C2_BASE, (uint8_t)value>>8);
-  I2CMasterControl(I2C2_BASE, I2C_MASTER_CMD_BURST_SEND_CONT);
-  while(!(I2CMasterBusy(I2C2_BASE)));
-  while(I2CMasterBusy(I2C2_BASE));
-
-  I2CMasterDataPut(I2C2_BASE, (uint8_t)value&0xff);
-  I2CMasterControl(I2C2_BASE, I2C_MASTER_CMD_BURST_SEND_FINISH);
-  while(!(I2CMasterBusy(I2C2_BASE)));
-  while(I2CMasterBusy(I2C2_BASE));
-
-  SysCtlDelay(30);
-
+    I2C2Send16Bits(i2c_address, 3, reg, ((uint8_t)value>>8), ((uint8_t)value&0xff));
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -144,32 +124,11 @@ void ADS1x1x_write_register(uint8_t i2c_address, uint8_t reg, uint16_t value)
 /**************************************************************************/
 uint16_t ADS1x1x_read_register(uint8_t i2c_address, uint8_t reg)
 {
+    uint16_t result = 0;
 
-  uint16_t result = 0;
-  uint8_t  ui8ConvRegHighByte = 0;
-  uint8_t  ui8ConvRegLowByte = 0;
+    result = I2C2Receive16Bits(i2c_address, reg);
 
-  I2CMasterSlaveAddrSet(I2C2_BASE, i2c_address, false);
-  I2CMasterDataPut(I2C2_BASE, reg);
-  I2CMasterControl(I2C2_BASE, I2C_MASTER_CMD_BURST_SEND_START );
-  while(!(I2CMasterBusy(I2C2_BASE)));
-  while(I2CMasterBusy(I2C2_BASE));
-
-  I2CMasterSlaveAddrSet(I2C2_BASE, i2c_address, true);
-  I2CMasterControl(I2C2_BASE, I2C_MASTER_CMD_BURST_RECEIVE_START);
-  while(!(I2CMasterBusy(I2C2_BASE)));
-  while(I2CMasterBusy(I2C2_BASE));
-  ui8ConvRegHighByte = I2CMasterDataGet(I2C2_BASE);
-
-  I2CMasterControl(I2C2_BASE, I2C_MASTER_CMD_BURST_RECEIVE_FINISH);
-  while(!(I2CMasterBusy(I2C2_BASE)));
-  while(I2CMasterBusy(I2C2_BASE));
-  ui8ConvRegLowByte = I2CMasterDataGet(I2C2_BASE);
-
-  result = ((ui8ConvRegHighByte<<8)|ui8ConvRegLowByte);
-
-  return result;
-
+    return result;
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -196,7 +155,7 @@ uint8_t ADS1x1x_init(ADS1x1x_config_t *p_config, ADS1x1x_chip_t chip, uint8_t i2
     ADS1x1x_set_os(p_config,OS_SINGLE);
     ADS1x1x_set_multiplexer(p_config,input);
     ADS1x1x_set_pga(p_config,gain);
-    ADS1x1x_set_mode(p_config,MODE_CONTINUOUS); // alterado MODE_SINGLE_SHOT
+    ADS1x1x_set_mode(p_config,MODE_CONTINUOUS);
     if (p_config->chip==ADS1013 || p_config->chip==ADS1014 || p_config->chip==ADS1015)
     {
       ADS1x1x_set_data_rate(p_config,DATA_RATE_ADS101x_3300);
@@ -383,7 +342,7 @@ void NtcInit(void)
   TempNtcIgbt2.Itlk_Delay_ms = 0; // milisecond
   TempNtcIgbt2.Itlk_DelayCount = 0;
 
-  delay_ms(100);
+  delay_ms(10);
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -416,8 +375,6 @@ void NtcStartConversion(void)
 void NtcRead(void)
 {
     NtcStartConversion();
-
-    delay_ms(50);
 
     TempNtcIgbt1.Value = GetTemperature((((float)ADS1x1x_read(&ntc_igbt1)*6.144)/2047.0));
 
@@ -469,7 +426,7 @@ void NtcRead(void)
     }
     else TempNtcIgbt2.Itlk_DelayCount = 0;
 
-    delay_ms(50);
+    delay_ms(20);
 
 }
 

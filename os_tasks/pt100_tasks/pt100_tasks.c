@@ -14,19 +14,32 @@
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 
-TaskHandle_t g_xPt100Handle = NULL;
+xTaskHandle g_xPt100Handle = NULL;
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 
 static void Pt100Task(void *pvParameters)
 {
+    portTickType xLastWakeTime;
+    xLastWakeTime = xTaskGetTickCount();
 
     while(1)
     {
         Pt100Ch1Sample();
+
+        vTaskDelayUntil(&xLastWakeTime, 100 / portTICK_RATE_MS);
+
         Pt100Ch2Sample();
+
+        vTaskDelayUntil(&xLastWakeTime, 100 / portTICK_RATE_MS);
+
         Pt100Ch3Sample();
+
+        vTaskDelayUntil(&xLastWakeTime, 100 / portTICK_RATE_MS);
+
         Pt100Ch4Sample();
+
+        vTaskDelayUntil(&xLastWakeTime, 100 / portTICK_RATE_MS);
     }
 
 }

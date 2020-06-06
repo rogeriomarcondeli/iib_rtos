@@ -14,16 +14,20 @@
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 
-TaskHandle_t g_xSendDataScheduleHandle = NULL;
+xTaskHandle g_xSendDataScheduleHandle = NULL;
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 
 static void SendDataScheduleTask(void *pvParameters)
 {
+    portTickType xLastWakeTime;
+    xLastWakeTime = xTaskGetTickCount();
 
     while(1)
     {
         send_data_schedule();
+
+        vTaskDelayUntil(&xLastWakeTime, 200 / portTICK_RATE_MS);
     }
 
 }
