@@ -20,10 +20,14 @@ xTaskHandle g_xInterlocksAppCheckHandle = NULL;
 
 static void InterlocksAppCheckTask(void *pvParameters)
 {
+    portTickType xLastWakeTime;
+    xLastWakeTime = xTaskGetTickCount();
 
     while(1)
     {
         InterlockAppCheck();
+
+        vTaskDelayUntil(&xLastWakeTime, 1 / portTICK_RATE_MS);
     }
 
 }

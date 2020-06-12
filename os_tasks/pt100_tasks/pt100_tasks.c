@@ -27,19 +27,19 @@ static void Pt100Task(void *pvParameters)
     {
         Pt100Ch1Sample();
 
-        vTaskDelayUntil(&xLastWakeTime, 100 / portTICK_RATE_MS);
+        vTaskDelayUntil(&xLastWakeTime, 1 / portTICK_RATE_MS);
 
         Pt100Ch2Sample();
 
-        vTaskDelayUntil(&xLastWakeTime, 100 / portTICK_RATE_MS);
+        vTaskDelayUntil(&xLastWakeTime, 1 / portTICK_RATE_MS);
 
         Pt100Ch3Sample();
 
-        vTaskDelayUntil(&xLastWakeTime, 100 / portTICK_RATE_MS);
+        vTaskDelayUntil(&xLastWakeTime, 1 / portTICK_RATE_MS);
 
         Pt100Ch4Sample();
 
-        vTaskDelayUntil(&xLastWakeTime, 100 / portTICK_RATE_MS);
+        vTaskDelayUntil(&xLastWakeTime, 1 / portTICK_RATE_MS);
     }
 
 }

@@ -20,10 +20,14 @@ xTaskHandle g_xPowerOnCheckHandle = NULL;
 
 static void PowerOnCheckTask(void *pvParameters)
 {
+    portTickType xLastWakeTime;
+    xLastWakeTime = xTaskGetTickCount();
 
     while(1)
     {
         power_on_check();
+
+        vTaskDelayUntil(&xLastWakeTime, 1 / portTICK_RATE_MS);
     }
 
 }

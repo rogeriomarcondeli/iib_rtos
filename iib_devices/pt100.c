@@ -193,8 +193,9 @@ void Pt100InitChannel(pt100_t *pt100)
 
      //Try to clear the error
      write_spi_byte(Configuration, 0b10000010);
-     delay_ms(100);
      
+     delay_ms(100);
+
      write_spi_byte(Configuration,0b11010000);             // Enabling Vbias of max31865
      value = read_spi_byte(read_Configuration);            // Reading contents of Configuration register to verify communication with max31865 is done properly
      

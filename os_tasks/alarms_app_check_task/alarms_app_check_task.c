@@ -20,10 +20,14 @@ xTaskHandle g_xAlarmsAppCheckHandle = NULL;
 
 static void AlarmsAppCheckTask(void *pvParameters)
 {
+    portTickType xLastWakeTime;
+    xLastWakeTime = xTaskGetTickCount();
 
     while(1)
     {
         AlarmAppCheck();
+
+        vTaskDelayUntil(&xLastWakeTime, 1 / portTICK_RATE_MS);
     }
 
 }

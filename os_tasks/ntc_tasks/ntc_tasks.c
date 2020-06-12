@@ -20,10 +20,14 @@ xTaskHandle g_xNtcHandle = NULL;
 
 static void NtcTask(void *pvParameters)
 {
+    portTickType xLastWakeTime;
+    xLastWakeTime = xTaskGetTickCount();
 
     while(1)
     {
         NtcRead();
+
+        vTaskDelayUntil(&xLastWakeTime, 100 / portTICK_RATE_MS);
     }
 
 }

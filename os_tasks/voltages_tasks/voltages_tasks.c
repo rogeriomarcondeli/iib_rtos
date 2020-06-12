@@ -20,13 +20,26 @@ xTaskHandle g_xVoltagesHandle = NULL;
 
 static void VoltagesTask(void *pvParameters)
 {
+    portTickType xLastWakeTime;
+    xLastWakeTime = xTaskGetTickCount();
 
     while(1)
     {
         VoltageCh1Sample();
+
+        vTaskDelayUntil(&xLastWakeTime, 1 / portTICK_RATE_MS);
+
         VoltageCh2Sample();
+
+        vTaskDelayUntil(&xLastWakeTime, 1 / portTICK_RATE_MS);
+
         VoltageCh3Sample();
+
+        vTaskDelayUntil(&xLastWakeTime, 1 / portTICK_RATE_MS);
+
         VoltageCh4Sample();
+
+        vTaskDelayUntil(&xLastWakeTime, 1 / portTICK_RATE_MS);
     }
 
 }

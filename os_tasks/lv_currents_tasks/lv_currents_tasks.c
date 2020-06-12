@@ -20,12 +20,22 @@ xTaskHandle g_xLvCurrentsHandle = NULL;
 
 static void LvCurrentsTask(void *pvParameters)
 {
+    portTickType xLastWakeTime;
+    xLastWakeTime = xTaskGetTickCount();
 
     while(1)
     {
         LvCurrentCh1Sample();
+
+        vTaskDelayUntil(&xLastWakeTime, 1 / portTICK_RATE_MS);
+
         LvCurrentCh2Sample();
+
+        vTaskDelayUntil(&xLastWakeTime, 1 / portTICK_RATE_MS);
+
         LvCurrentCh3Sample();
+
+        vTaskDelayUntil(&xLastWakeTime, 1 / portTICK_RATE_MS);
     }
 
 }

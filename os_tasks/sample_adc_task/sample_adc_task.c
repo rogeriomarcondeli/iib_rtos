@@ -20,10 +20,14 @@ xTaskHandle g_xSampleAdcHandle = NULL;
 
 static void SampleAdcTask(void *pvParameters)
 {
+    portTickType xLastWakeTime;
+    xLastWakeTime = xTaskGetTickCount();
 
     while(1)
     {
         sample_adc();
+
+        vTaskDelayUntil(&xLastWakeTime, 1 / portTICK_RATE_MS);
     }
 
 }

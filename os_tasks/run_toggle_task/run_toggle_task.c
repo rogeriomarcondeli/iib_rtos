@@ -20,10 +20,14 @@ xTaskHandle g_xRunToggleHandle = NULL;
 
 static void RunToggleTask(void *pvParameters)
 {
+    portTickType xLastWakeTime;
+    xLastWakeTime = xTaskGetTickCount();
 
     while(1)
     {
-        RunToggle();
+       RunToggle();
+
+       vTaskDelayUntil(&xLastWakeTime, 1 / portTICK_RATE_MS);
     }
 
 }

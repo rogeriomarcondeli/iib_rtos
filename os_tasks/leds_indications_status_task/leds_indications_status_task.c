@@ -20,10 +20,14 @@ xTaskHandle g_xLedsIndicationsStatusHandle = NULL;
 
 static void LedsIndicationsStatusTask(void *pvParameters)
 {
+    portTickType xLastWakeTime;
+    xLastWakeTime = xTaskGetTickCount();
 
     while(1)
     {
         LedIndicationStatus();
+
+        vTaskDelayUntil(&xLastWakeTime, 1 / portTICK_RATE_MS);
     }
 
 }

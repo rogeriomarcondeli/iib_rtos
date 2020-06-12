@@ -64,7 +64,7 @@ int main(void)
     //
     // Create the sample adc task.
     //
-    if(SampleAdcTaskInit() != 0)
+    /*if(SampleAdcTaskInit() != 0)
     {
         while(1)
         {
@@ -72,14 +72,14 @@ int main(void)
             // Do Nothing.
             //
         }
-    }
+    }*/
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 
     //
     // Create the voltages tasks.
     //
-    if(VoltagesTaskInit() != 0)
+    /*if(VoltagesTaskInit() != 0)
     {
         while(1)
         {
@@ -87,14 +87,14 @@ int main(void)
             // Do Nothing.
             //
         }
-    }
+    }*/
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 
     //
     // Create the currents tasks.
     //
-    if(CurrentsTaskInit() != 0)
+    /*if(CurrentsTaskInit() != 0)
     {
         while(1)
         {
@@ -102,14 +102,14 @@ int main(void)
             // Do Nothing.
             //
         }
-    }
+    }*/
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 
     //
     // Create the lv_currents tasks.
     //
-    if(LvCurrentsTaskInit() != 0)
+    /*if(LvCurrentsTaskInit() != 0)
     {
         while(1)
         {
@@ -117,7 +117,37 @@ int main(void)
             // Do Nothing.
             //
         }
-    }
+    }*/
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+    //
+    // Create the drives voltage task.
+    //
+    /*if(DrivesVoltageTaskInit() != 0)
+    {
+        while(1)
+        {
+            //
+            // Do Nothing.
+            //
+        }
+    }*/
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+    //
+    // Create the drives current task.
+    //
+    /*if(DrivesCurrentTaskInit() != 0)
+    {
+        while(1)
+        {
+            //
+            // Do Nothing.
+            //
+        }
+    }*/
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -154,37 +184,7 @@ int main(void)
     //
     // Create the send data schedule task.
     //
-    if(SendDataScheduleTaskInit() != 0)
-    {
-        while(1)
-        {
-            //
-            // Do Nothing.
-            //
-        }
-    }
-
-/////////////////////////////////////////////////////////////////////////////////////////////
-
-    //
-    // Create the pt100 tasks.
-    //
-    if(Pt100TaskInit() != 0)
-    {
-        while(1)
-        {
-            //
-            // Do Nothing.
-            //
-        }
-    }
-
-/////////////////////////////////////////////////////////////////////////////////////////////
-
-    //
-    // Create the relative humidity task.
-    //
-    /*if(RelativeHumidityTaskInit() != 0)
+    /*if(SendDataScheduleTaskInit() != 0)
     {
         while(1)
         {
@@ -197,54 +197,9 @@ int main(void)
 /////////////////////////////////////////////////////////////////////////////////////////////
 
     //
-    // Create the board temperature task.
+    // Create the pt100 tasks.
     //
-    if(BoardTemperatureTaskInit() != 0)
-    {
-        while(1)
-        {
-            //
-            // Do Nothing.
-            //
-        }
-    }
-
-/////////////////////////////////////////////////////////////////////////////////////////////
-
-    //
-    // Create the drives voltage task.
-    //
-    if(DrivesVoltageTaskInit() != 0)
-    {
-        while(1)
-        {
-            //
-            // Do Nothing.
-            //
-        }
-    }
-
-/////////////////////////////////////////////////////////////////////////////////////////////
-
-    //
-    // Create the drives current task.
-    //
-    if(DrivesCurrentTaskInit() != 0)
-    {
-        while(1)
-        {
-            //
-            // Do Nothing.
-            //
-        }
-    }
-
-/////////////////////////////////////////////////////////////////////////////////////////////
-
-    //
-    // Create the ntc tasks.
-    //
-    if(NtcTaskInit() != 0)
+    /*if(Pt100TaskInit() != 0)
     {
         while(1)
         {
@@ -267,7 +222,52 @@ int main(void)
             // Do Nothing.
             //
         }
+    }*/
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+    //
+    // Create the relative humidity task.
+    //
+    /*if(RelativeHumidityTaskInit() != 0)
+    {
+        while(1)
+        {
+            //
+            // Do Nothing.
+            //
+        }
     }
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+    //
+    // Create the board temperature task.
+    //
+    if(BoardTemperatureTaskInit() != 0)
+    {
+        while(1)
+        {
+            //
+            // Do Nothing.
+            //
+        }
+    }*/
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+    //
+    // Create the ntc tasks.
+    //
+    /*if(NtcTaskInit() != 0)
+    {
+        while(1)
+        {
+            //
+            // Do Nothing.
+            //
+        }
+    }*/
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -283,7 +283,6 @@ int main(void)
             //
         }
     }
-
 /////////////////////////////////////////////////////////////////////////////////////////////
 
     //

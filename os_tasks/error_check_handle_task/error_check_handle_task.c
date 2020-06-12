@@ -20,10 +20,14 @@ xTaskHandle g_xErrorCheckHandle = NULL;
 
 static void ErrorCheckHandleTask(void *pvParameters)
 {
+    portTickType xLastWakeTime;
+    xLastWakeTime = xTaskGetTickCount();
 
     while(1)
     {
         ErrorCheckHandle();
+
+        vTaskDelayUntil(&xLastWakeTime, 1 / portTICK_RATE_MS);
     }
 
 }

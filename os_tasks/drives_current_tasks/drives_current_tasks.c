@@ -20,11 +20,18 @@ xTaskHandle g_xDrivesCurrentHandle = NULL;
 
 static void DrivesCurrentTask(void *pvParameters)
 {
+    portTickType xLastWakeTime;
+    xLastWakeTime = xTaskGetTickCount();
 
     while(1)
     {
         Driver1CurrentSample();
+
+        vTaskDelayUntil(&xLastWakeTime, 1 / portTICK_RATE_MS);
+
         Driver2CurrentSample();
+
+        vTaskDelayUntil(&xLastWakeTime, 1 / portTICK_RATE_MS);
     }
 
 }

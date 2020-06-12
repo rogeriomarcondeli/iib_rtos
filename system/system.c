@@ -27,6 +27,7 @@
 #include "driverlib/timer.h"
 #include "board_drivers/hardware_def.h"
 #include "peripheral_drivers/gpio/gpio_driver.h"
+#include "peripheral_drivers/utils/uartstdio.h"
 #include "iib_devices/can_bus.h"
 #include "iib_devices/adc_internal.h"
 #include "iib_devices/application.h"
@@ -187,6 +188,9 @@ void init_system(void)
 
     //PWM1SoftwareInit();
 
+    //Uart2 initialization
+    InitUart();
+
     //PT100 channels initialization
     Pt100Init();
 
@@ -204,6 +208,7 @@ void init_system(void)
     {
         //Blink bar
         LedBarBlink();
+
         delay_ms(40);
     }
 

@@ -12,15 +12,22 @@
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 
+extern void InitI2C2(void);
+extern void I2C2Send16Bits(uint8_t slave_addr, uint8_t num_of_args, ...);
+extern uint16_t I2C2Receive16Bits(uint32_t slave_addr, uint8_t reg);
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+
 extern void InitI2C5(void);
 extern void I2C5Send(uint8_t slave_addr, uint8_t num_of_args, ...);
 extern uint32_t I2C5Receive(uint32_t slave_addr, uint8_t reg);
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 
-extern void InitI2C2(void);
-extern void I2C2Send16Bits(uint8_t slave_addr, uint8_t num_of_args, ...);
-extern uint16_t I2C2Receive16Bits(uint32_t slave_addr, uint8_t reg);
+extern void InitI2C6(void);
+extern void I2C6Send(uint8_t slave_addr, uint8_t num_of_args, ...);
+extern uint32_t I2C6Receive(uint32_t slave_addr, uint8_t reg);
+extern void I2C6SendString(uint32_t slave_addr, char array[]);
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 

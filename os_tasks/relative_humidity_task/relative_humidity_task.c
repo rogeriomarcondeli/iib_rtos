@@ -27,7 +27,7 @@ static void RelativeHumidityTask(void *pvParameters)
     {
         RelativeHumidityRead();
 
-        vTaskDelayUntil(&xLastWakeTime, 40/ portTICK_RATE_MS);
+        vTaskDelayUntil(&xLastWakeTime, 1 / portTICK_RATE_MS);
     }
 
 }

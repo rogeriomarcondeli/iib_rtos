@@ -57,8 +57,12 @@ static rh_tempboard_t RelativeHumidity;
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 
-static unsigned char Start1 = 0x21;
-static unsigned char Start2 = 0x31;
+//static unsigned char Start1 = 0x01; //35ms
+//static unsigned char Start2 = 0x11; //35ms
+
+static unsigned char Start1 = 0x21; //18ms
+static unsigned char Start2 = 0x31; //18ms
+
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 

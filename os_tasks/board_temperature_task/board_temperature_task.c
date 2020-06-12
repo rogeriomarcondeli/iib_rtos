@@ -25,21 +25,9 @@ static void BoardTemperatureTask(void *pvParameters)
 
     while(1)
     {
-       BoardTemperatureStartConversion();
+        BoardTemperatureRead();
 
-       vTaskDelayUntil(&xLastWakeTime, 100 / portTICK_RATE_MS);
-
-       BoardTemperatureRead();
-
-       vTaskDelayUntil(&xLastWakeTime, 100 / portTICK_RATE_MS);
-
-       RelativeHumidityStartConversion();
-
-       vTaskDelayUntil(&xLastWakeTime, 100 / portTICK_RATE_MS);
-
-       RelativeHumidityRead();
-
-       vTaskDelayUntil(&xLastWakeTime, 100 / portTICK_RATE_MS);
+        vTaskDelayUntil(&xLastWakeTime, 1 / portTICK_RATE_MS);
     }
 
 }
