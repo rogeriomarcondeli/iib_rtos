@@ -1,23 +1,23 @@
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 
-#ifndef __RELATIVE_HUMIDITY_TASK_H__
-#define __RELATIVE_HUMIDITY_TASK_H__
+#ifndef __BOARD_TEMPERATURE_RELATIVE_HUMIDITY_TASK_H__
+#define __BOARD_TEMPERATURE_RELATIVE_HUMIDITY_TASK_H__
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 
 #include <stdint.h>
 
-#define RELATIVE_HUMIDITY_TASK_STACK_SIZE        512         // Stack size in words
-#define RELATIVE_HUMIDITY_TASK_PERIOD_US         10000       // periodic rate of the task
+#define BOARD_TEMP_RH_TASK_STACK_SIZE        512         // Stack size in words
+#define BOARD_TEMP_RH_TASK_PERIOD_US         10000       // periodic rate of the task
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 
-extern TaskHandle_t g_xRelativeHumidityHandle;
+extern TaskHandle_t g_xBoardTempRHHandle;
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 
-extern uint32_t RelativeHumidityTaskInit(void);
+extern uint32_t BoardTempRHTaskInit(void);
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 

@@ -27,7 +27,7 @@ static void RunToggleTask(void *pvParameters)
     {
        RunToggle();
 
-       vTaskDelayUntil(&xLastWakeTime, 1 / portTICK_RATE_MS);
+       vTaskDelayUntil(&xLastWakeTime, 1/ portTICK_RATE_MS);
     }
 
 }

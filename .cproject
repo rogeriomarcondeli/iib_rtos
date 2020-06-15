@@ -50,8 +50,7 @@
 									<listOptionValue builtIn="false" value="${workspace_loc:/${ProjName}/os_tasks/alarms_app_check_task}"/>
 									<listOptionValue builtIn="false" value="${workspace_loc:/${ProjName}/os_tasks/error_check_handle_task}"/>
 									<listOptionValue builtIn="false" value="${workspace_loc:/${ProjName}/os_tasks/ntc_tasks}"/>
-									<listOptionValue builtIn="false" value="${workspace_loc:/${ProjName}/os_tasks/board_temperature_task}"/>
-									<listOptionValue builtIn="false" value="${workspace_loc:/${ProjName}/os_tasks/relative_humidity_task}"/>
+									<listOptionValue builtIn="false" value="${workspace_loc:/${ProjName}/os_tasks/board_temperature_relative_humidity_task}"/>
 									<listOptionValue builtIn="false" value="${workspace_loc:/${ProjName}/os_tasks/leds_indications_status_task}"/>
 									<listOptionValue builtIn="false" value="${workspace_loc:/${ProjName}/os_tasks/pt100_tasks}"/>
 									<listOptionValue builtIn="false" value="${workspace_loc:/${ProjName}/os_tasks/send_data_schedule_task}"/>

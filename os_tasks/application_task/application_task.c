@@ -18,7 +18,7 @@
 
 xTaskHandle g_xApplicationHandle = NULL;
 
-UBaseType_t uxHighWaterMark;
+//UBaseType_t uxApplicationTaskHighWaterMark;
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -31,13 +31,13 @@ static void ApplicationTask(void *pvParameters)
     {
         Application();
 
-        vTaskDelayUntil(&xLastWakeTime, 1000 / portTICK_RATE_MS);
+        vTaskDelayUntil(&xLastWakeTime, 1 / portTICK_RATE_MS);
 
-        uxHighWaterMark = uxTaskGetStackHighWaterMark( NULL );
+        //uxApplicationTaskHighWaterMark = uxTaskGetStackHighWaterMark( NULL );
 
-        vPrintStringAndNumber("TASK SIZE :", uxHighWaterMark);
+        //vPrintStringAndNumber("TASK SIZE :", uxApplicationTaskHighWaterMark);
 
-        vTaskDelayUntil(&xLastWakeTime, 1000 / portTICK_RATE_MS);
+        //vTaskDelayUntil(&xLastWakeTime, 1000 / portTICK_RATE_MS);
     }
 
 }

@@ -57,12 +57,11 @@ static rh_tempboard_t RelativeHumidity;
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 
-//static unsigned char Start1 = 0x01; //35ms
-//static unsigned char Start2 = 0x11; //35ms
+static unsigned char Start1 = 0x01; //35ms
+static unsigned char Start2 = 0x11; //35ms
 
-static unsigned char Start1 = 0x21; //18ms
-static unsigned char Start2 = 0x31; //18ms
-
+//static unsigned char Start1 = 0x21; //18ms
+//static unsigned char Start2 = 0x31; //18ms
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -82,10 +81,6 @@ void BoardTemperatureStartConversion(void)
 
 void BoardTemperatureRead(void)
 {
-    //BoardTemperatureStartConversion();
-
-    //delay_ms(40);
-									  
     uint8_t Status=1;
     uint8_t TemperatureH;
     uint8_t TemperatureL;
@@ -159,10 +154,6 @@ void RelativeHumidityStartConversion(void)
 
 void RelativeHumidityRead(void)
 {
-    //RelativeHumidityStartConversion();
-
-    //delay_ms(40);
-									  
     unsigned char Status=1;
     unsigned char RelativeHumidityH;
     unsigned char RelativeHumidityL;
@@ -405,7 +396,6 @@ void RhBoardTempClearAlarmTrip(void)
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////
-
 
 
 

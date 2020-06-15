@@ -25,8 +25,7 @@
 #include "os_tasks/send_data_schedule_task/send_data_schedule_task.h"
 #include "os_tasks/pt100_tasks/pt100_tasks.h"
 #include "os_tasks/leds_indications_status_task/leds_indications_status_task.h"
-#include "os_tasks/relative_humidity_task/relative_humidity_task.h"
-#include "os_tasks/board_temperature_task/board_temperature_task.h"
+#include "os_tasks/board_temperature_relative_humidity_task/board_temperature_relative_humidity_task.h"
 #include "os_tasks/ntc_tasks/ntc_tasks.h"
 #include "os_tasks/error_check_handle_task/error_check_handle_task.h"
 #include "os_tasks/alarms_app_check_task/alarms_app_check_task.h"
@@ -227,9 +226,9 @@ int main(void)
 /////////////////////////////////////////////////////////////////////////////////////////////
 
     //
-    // Create the relative humidity task.
+    // Create the board temperature and relative humidity task.
     //
-    /*if(RelativeHumidityTaskInit() != 0)
+    if(BoardTempRHTaskInit() != 0)
     {
         while(1)
         {
@@ -238,21 +237,6 @@ int main(void)
             //
         }
     }
-
-/////////////////////////////////////////////////////////////////////////////////////////////
-
-    //
-    // Create the board temperature task.
-    //
-    if(BoardTemperatureTaskInit() != 0)
-    {
-        while(1)
-        {
-            //
-            // Do Nothing.
-            //
-        }
-    }*/
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 
