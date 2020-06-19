@@ -27,7 +27,7 @@ static void LedsIndicationsStatusTask(void *pvParameters)
     {
         LedIndicationStatus();
 
-        vTaskDelayUntil(&xLastWakeTime, 1 / portTICK_RATE_MS);
+        vTaskDelayUntil(&xLastWakeTime, 1250 / portTICK_RATE_US);
     }
 
 }

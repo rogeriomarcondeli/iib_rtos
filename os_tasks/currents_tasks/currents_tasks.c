@@ -27,19 +27,19 @@ static void CurrentsTask(void *pvParameters)
     {
         CurrentCh1Sample();
 
-        vTaskDelayUntil(&xLastWakeTime, 1 / portTICK_RATE_MS);
+        vTaskDelayUntil(&xLastWakeTime, 1 / portTICK_RATE_US);
 
         CurrentCh2Sample();
 
-        vTaskDelayUntil(&xLastWakeTime, 1 / portTICK_RATE_MS);
+        vTaskDelayUntil(&xLastWakeTime, 1 / portTICK_RATE_US);
 
         CurrentCh3Sample();
 
-        vTaskDelayUntil(&xLastWakeTime, 1 / portTICK_RATE_MS);
+        vTaskDelayUntil(&xLastWakeTime, 1 / portTICK_RATE_US);
 
         CurrentCh4Sample();
 
-        vTaskDelayUntil(&xLastWakeTime, 1 / portTICK_RATE_MS);
+        vTaskDelayUntil(&xLastWakeTime, 1 / portTICK_RATE_US);
     }
 
 }

@@ -5,8 +5,6 @@
 #include <stdint.h>
 #include "iib_devices/board_temp_hum.h"
 #include "iib_devices/priorities_task_iib.h"
-#include "peripheral_drivers/utils/uartstdio.h"
-#include "system/system.h"
 
 #include "FreeRTOS.h"
 #include "task.h"
@@ -17,8 +15,6 @@
 /////////////////////////////////////////////////////////////////////////////////////////////
 
 xTaskHandle g_xBoardTempRHHandle = NULL;
-
-//UBaseType_t uxBoardTempRHTaskHighWaterMark;
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -31,33 +27,19 @@ static void BoardTempRHTask(void *pvParameters)
     {
         BoardTemperatureStartConversion();
 
-        vTaskDelayUntil(&xLastWakeTime, 100 / portTICK_RATE_MS);
+        vTaskDelayUntil(&xLastWakeTime, 1000 / portTICK_RATE_US);
 
         BoardTemperatureRead();
 
-        vTaskDelayUntil(&xLastWakeTime, 100 / portTICK_RATE_MS);
-
-        //uxBoardTempRHTaskHighWaterMark = uxTaskGetStackHighWaterMark( NULL );
-
-        //vPrintStringAndNumber("TASK SIZE :", uxBoardTempRHTaskHighWaterMark);
-
-        //vTaskDelayUntil(&xLastWakeTime, 1000 / portTICK_RATE_MS);
+        vTaskDelayUntil(&xLastWakeTime, 1000 / portTICK_RATE_US);
 
         RelativeHumidityStartConversion();
 
-        vTaskDelayUntil(&xLastWakeTime, 100 / portTICK_RATE_MS);
+        vTaskDelayUntil(&xLastWakeTime, 1000 / portTICK_RATE_US);
 
         RelativeHumidityRead();
 
-        vTaskDelayUntil(&xLastWakeTime, 100 / portTICK_RATE_MS);
-
-        vPrintStringAndNumber("TempBoard :", BoardTempRead());
-
-        vTaskDelayUntil(&xLastWakeTime, 1000 / portTICK_RATE_MS);
-
-        vPrintStringAndNumber("Umidade :", RhRead());
-
-        vTaskDelayUntil(&xLastWakeTime, 1000 / portTICK_RATE_MS);
+        vTaskDelayUntil(&xLastWakeTime, 1000 / portTICK_RATE_US);
     }
 
 }

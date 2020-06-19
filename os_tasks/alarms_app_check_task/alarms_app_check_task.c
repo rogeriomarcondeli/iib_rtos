@@ -27,7 +27,7 @@ static void AlarmsAppCheckTask(void *pvParameters)
     {
         AlarmAppCheck();
 
-        vTaskDelayUntil(&xLastWakeTime, 1 / portTICK_RATE_MS);
+        vTaskDelayUntil(&xLastWakeTime, 10 / portTICK_RATE_US);
     }
 
 }

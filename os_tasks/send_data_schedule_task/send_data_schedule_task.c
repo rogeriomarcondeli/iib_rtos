@@ -25,9 +25,9 @@ static void SendDataScheduleTask(void *pvParameters)
 
     while(1)
     {
-        send_data_schedule();
+       send_data_schedule();
 
-        vTaskDelayUntil(&xLastWakeTime, 50 / portTICK_RATE_MS);
+       vTaskDelayUntil(&xLastWakeTime, 10000 / portTICK_RATE_US);
     }
 
 }

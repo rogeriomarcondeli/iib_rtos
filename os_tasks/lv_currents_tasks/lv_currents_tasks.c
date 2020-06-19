@@ -27,15 +27,15 @@ static void LvCurrentsTask(void *pvParameters)
     {
         LvCurrentCh1Sample();
 
-        vTaskDelayUntil(&xLastWakeTime, 1 / portTICK_RATE_MS);
+        vTaskDelayUntil(&xLastWakeTime, 1 / portTICK_RATE_US);
 
         LvCurrentCh2Sample();
 
-        vTaskDelayUntil(&xLastWakeTime, 1 / portTICK_RATE_MS);
+        vTaskDelayUntil(&xLastWakeTime, 1 / portTICK_RATE_US);
 
         LvCurrentCh3Sample();
 
-        vTaskDelayUntil(&xLastWakeTime, 1 / portTICK_RATE_MS);
+        vTaskDelayUntil(&xLastWakeTime, 1 / portTICK_RATE_US);
     }
 
 }

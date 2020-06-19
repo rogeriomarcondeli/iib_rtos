@@ -34,34 +34,18 @@ volatile bool g_bErrFlag = 0;
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 
-//*****************************************************************************
-//
-// A flag for the interrupt handler to indicate that a message was received.
-//
-//*****************************************************************************
-volatile bool g_bRXFlag = 0;
-
-/////////////////////////////////////////////////////////////////////////////////////////////
-
 /******************************************************************************
  *                          Object Messages
  *****************************************************************************/
-volatile uint8_t msg_obj_sent;
-
-/////////////////////////////////////////////////////////////////////////////////////////////
-
 tCANMsgObject transmit_message;
-tCANMsgObject event_message;
+
 tCANMsgObject receive_message;
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 
-uint8_t itlk_message_data[INTERLOCK_MESSAGE_LEN];
-uint8_t alarm_message_data[ALARM_MESSAGE_LEN];
-uint8_t request_data_rx[DATA_REQUEST_MESSAGE_LEN];
 uint8_t request_data_tx[DATA_SEND_MESSAGE_LEN];
+
 uint8_t reset_msg_data[RESET_ITLK_MESSAGE_LEN];
-uint8_t heart_beat_data[HEART_BEAT_MESSAGE_LEN];
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -69,7 +53,7 @@ volatile uint8_t can_address    = 0;
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 
-static void handle_reset_message(void);
+void handle_reset_message(void);
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -90,7 +74,6 @@ void can_isr(void)
     // If the cause is a controller status interrupt, then get the status
     if(ui32Status == CAN_INT_INTID_STATUS)
     {
-
         // Read the controller status.  This will return a field of status
         // error bits that can indicate various errors.  Error processing
         // is not done in this example for simplicity.  Refer to the
@@ -101,36 +84,8 @@ void can_isr(void)
         // controller status.
         ui32Status = CANStatusGet(CAN0_BASE, CAN_STS_CONTROL);
 
-
         // Set a flag to indicate some errors may have occurred.
         g_bErrFlag = 1;
-    }
-
-
-    // Check if the cause is message object 1, which what we are using for
-    // sending messages.
-    else if(ui32Status == INTERLOCK_MESSAGE_OBJ_ID)
-    {
-
-        // Getting to this point means that the TX interrupt occurred on
-        // message object 1, and the message TX is complete.  Clear the
-        // message object interrupt.
-
-        CANIntClear(CAN0_BASE, INTERLOCK_MESSAGE_OBJ_ID);
-
-        /* Tx object. Nothing to do for now. */
-
-
-        // Since the message was sent, clear any error flags.
-        g_bErrFlag = 0;
-    }
-
-    else if(ui32Status == ALARM_MESSAGE_OBJ_ID)
-    {
-        CANIntClear(CAN0_BASE, ALARM_MESSAGE_OBJ_ID);
-
-        /* Tx object. Nothing to do for now. */
-        g_bErrFlag = 0;
     }
 
     else if(ui32Status == RESET_ITLK_MESSAGE_OBJ_ID)
@@ -142,42 +97,12 @@ void can_isr(void)
         g_bErrFlag = 0;
     }
 
-    else if(ui32Status == DATA_REQUEST_MESSAGE_OBJ_ID)
-    {
-        CANIntClear(CAN0_BASE, DATA_REQUEST_MESSAGE_OBJ_ID);
-
-        // Do Nothing
-        g_bErrFlag = 0;
-
-    }
-
-    else if (ui32Status == DATA_SEND_OBJ_ID)
+    else if(ui32Status == DATA_SEND_OBJ_ID)
     {
         CANIntClear(CAN0_BASE, DATA_SEND_OBJ_ID);
 
-        msg_obj_sent = 1;
-
         g_bErrFlag = 0;
     }
-
-    else if(ui32Status == RECV_PARAM_MESSAGE_OBJ_ID)
-    {
-        CANIntClear(CAN0_BASE, RECV_PARAM_MESSAGE_OBJ_ID);
-
-        /* TODO: Update params. */
-
-        g_bErrFlag = 0;
-    }
-
-    else if (ui32Status == HEART_BEAT_MESSAGE_OB_ID)
-    {
-        CANIntClear(CAN0_BASE, HEART_BEAT_MESSAGE_OB_ID);
-
-        /* Tx object. Nothing to do for now. */
-
-        g_bErrFlag = 0;
-    }
-
 
     // Otherwise, something unexpected caused the interrupt.  This should
     // never happen.
@@ -225,32 +150,17 @@ void InitCan(uint32_t ui32SysClock)
     // Enable the CAN for operation.
     CANEnable(CAN0_BASE);
 
-    receive_message.ui32MsgID = ParamsSetMsgId;
-    receive_message.ui32MsgIDMask = 0xfffff;
-    receive_message.ui32Flags = MSG_OBJ_RX_INT_ENABLE | MSG_OBJ_USE_ID_FILTER;
-    receive_message.ui32MsgLen = RECV_PARAM_MESSAGE_LEN;
+    transmit_message.ui32MsgID      = DataSendMsgId;
+    transmit_message.ui32MsgIDMask  = 0;
+    transmit_message.ui32Flags      = MSG_OBJ_TX_INT_ENABLE;
+    transmit_message.ui32MsgLen     = DATA_SEND_MESSAGE_LEN;
 
-    CANMessageSet(CAN0_BASE, RECV_PARAM_MESSAGE_OBJ_ID, &receive_message,
-                                                              MSG_OBJ_TYPE_RX);
-    /*
-     * Message object to reset events (interlock and alarms)
-     * */
+    receive_message.ui32MsgID       = ResetMsgId;
+    receive_message.ui32MsgIDMask   = 0;
+    receive_message.ui32Flags       = MSG_OBJ_RX_INT_ENABLE;
+    receive_message.ui32MsgLen      = RESET_ITLK_MESSAGE_LEN;
 
-    receive_message.ui32MsgID = 0;
-    receive_message.ui32MsgLen = RESET_ITLK_MESSAGE_LEN;
-
-    CANMessageSet(CAN0_BASE, RESET_ITLK_MESSAGE_OBJ_ID, &receive_message,
-                                                              MSG_OBJ_TYPE_RX);
-
-    receive_message.ui32MsgID = DataRequestMsgId;
-    receive_message.ui32MsgLen = DATA_REQUEST_MESSAGE_LEN;
-
-    CANMessageSet(CAN0_BASE, DATA_REQUEST_MESSAGE_OBJ_ID, &receive_message,
-                                                              MSG_OBJ_TYPE_RX);
-
-    transmit_message.ui32MsgID = 0;
-    transmit_message.ui32MsgIDMask = 0;
-    transmit_message.ui32Flags = MSG_OBJ_TX_INT_ENABLE;
+    CANMessageSet(CAN0_BASE, RESET_ITLK_MESSAGE_OBJ_ID, &receive_message, MSG_OBJ_TYPE_RX);
 
     // Module ID
     can_address = BoardAddressRead();
@@ -266,7 +176,8 @@ void handle_reset_message(void)
     uint8_t id;
 
     receive_message.pui8MsgData = reset_msg_data;
-    CANMessageGet(CAN0_BASE, RESET_ITLK_MESSAGE_OBJ_ID, &receive_message, 0);
+
+    CANMessageGet(CAN0_BASE, RESET_ITLK_MESSAGE_OBJ_ID, &receive_message, false);
 
     id = reset_msg_data[0];
 
@@ -281,7 +192,6 @@ void handle_reset_message(void)
 
 void send_data_message(uint8_t var)
 {
-
     request_data_tx[0] = can_address;
     request_data_tx[1] = var;
     request_data_tx[2] = 0;
@@ -291,12 +201,10 @@ void send_data_message(uint8_t var)
     request_data_tx[6] = g_controller_iib.iib_signals[var].u8[2];
     request_data_tx[7] = g_controller_iib.iib_signals[var].u8[3];
 
-    transmit_message.ui32MsgID =  DataSendMsgId;
-    transmit_message.ui32MsgLen = DATA_SEND_MESSAGE_LEN;
     transmit_message.pui8MsgData = request_data_tx;
 
-    CANMessageSet(CAN0_BASE, DATA_SEND_OBJ_ID, &transmit_message,
-                                                          MSG_OBJ_TYPE_TX);
+    CANMessageSet(CAN0_BASE, DATA_SEND_OBJ_ID, &transmit_message, MSG_OBJ_TYPE_TX);
+
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////

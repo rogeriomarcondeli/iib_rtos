@@ -431,7 +431,7 @@ void AlarmAppCheck(void)
 
        AlarmSet();
 
-       send_data_message(1);
+       //send_data_message(1);
    }
 }
 

@@ -27,11 +27,11 @@ static void DrivesCurrentTask(void *pvParameters)
     {
         Driver1CurrentSample();
 
-        vTaskDelayUntil(&xLastWakeTime, 1 / portTICK_RATE_MS);
+        vTaskDelayUntil(&xLastWakeTime, 10 / portTICK_RATE_US);
 
         Driver2CurrentSample();
 
-        vTaskDelayUntil(&xLastWakeTime, 1 / portTICK_RATE_MS);
+        vTaskDelayUntil(&xLastWakeTime, 10 / portTICK_RATE_US);
     }
 
 }

@@ -27,7 +27,7 @@ static void NtcTask(void *pvParameters)
     {
         NtcRead();
 
-        vTaskDelayUntil(&xLastWakeTime, 100 / portTICK_RATE_MS);
+        vTaskDelayUntil(&xLastWakeTime, 1000 / portTICK_RATE_US);
     }
 
 }

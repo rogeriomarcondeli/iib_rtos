@@ -27,7 +27,7 @@ static void PowerOnCheckTask(void *pvParameters)
     {
         power_on_check();
 
-        vTaskDelayUntil(&xLastWakeTime, 1 / portTICK_RATE_MS);
+        vTaskDelayUntil(&xLastWakeTime, 10 / portTICK_RATE_US);
     }
 
 }

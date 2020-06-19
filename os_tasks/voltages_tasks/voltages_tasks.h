@@ -8,7 +8,7 @@
 
 #include <stdint.h>
 
-#define VOLTAGES_TASK_STACK_SIZE        512         // Stack size in words
+#define VOLTAGES_TASK_STACK_SIZE        128         // Stack size in words
 #define VOLTAGES_TASK_PERIOD_US         10000       // periodic rate of the task
 
 /////////////////////////////////////////////////////////////////////////////////////////////

@@ -27,7 +27,7 @@ static void SampleAdcTask(void *pvParameters)
     {
         sample_adc();
 
-        vTaskDelayUntil(&xLastWakeTime, 1 / portTICK_RATE_MS);
+        vTaskDelayUntil(&xLastWakeTime, 10 / portTICK_RATE_US);
     }
 
 }

@@ -956,7 +956,7 @@ V8 if desired. */
 	#define xTimerHandle TimerHandle_t
 	#define xCoRoutineHandle CoRoutineHandle_t
 	#define pdTASK_HOOK_CODE TaskHookFunction_t
-	#define portTICK_RATE_MS portTICK_PERIOD_MS
+	#define portTICK_RATE_US portTICK_PERIOD_US
 	#define pcTaskGetTaskName pcTaskGetName
 	#define pcTimerGetTimerName pcTimerGetName
 	#define pcQueueGetQueueName pcQueueGetName
